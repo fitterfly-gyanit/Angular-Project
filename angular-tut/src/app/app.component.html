@@ -1,4 +1,30 @@
-<h1>Hello, Angular 19, {{title}}</h1>
-<div>{{name}}</div>
+<h1>Signals in angular</h1>
 
-<app-counter-project></app-counter-project>
+<!-- <h1>{{count()}}</h1>
+<h1>{{x}}</h1>
+
+<button (click)="updateSignal()">Update Signal</button> -->
+
+<button (click)="updateSignal('decr')">Decrement</button>
+<h1>{{count()}}</h1>
+<button (click)="updateSignal('incr')">Increment</button>
+
+
+<br>
+<br>
+<hr>
+
+<h1>Computed Signals</h1>
+
+<h1>{{userName()}}</h1>
+
+<button (click)="userName.set('sam')">Update</button>
+
+<br>
+<br>
+
+<button (click)="toggleValue()">Toggle Value</button>
+<h2>{{count()}}</h2>
+@if(displayHeading){
+    <h1 style="background-color: green;">page heading</h1>
+}
