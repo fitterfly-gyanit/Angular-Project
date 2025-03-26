@@ -1,0 +1,48 @@
+<h1>API call for Product List</h1>
+
+<form #userForm="ngForm" (ngSubmit)="addUser(userForm.value)"> 
+  <input type="text" placeholder="please enter name" name="name" [ngModel]="selectedUser?.name">
+  <br><br>
+  <input type="text" placeholder="please enter email" name="email" [ngModel]="selectedUser?.email">
+  <br><br>
+  <input type="text" placeholder="please enter age" name="age" [ngModel]="selectedUser?.age">
+  <br><br>
+  @if(!selectedUser){
+    <button>Add User</button>
+  }@else {
+    <button>Update User</button>
+  }
+  
+</form>
+
+
+<!-- <button (click)="getUsers()">Get Users</button> -->
+
+<ul>
+  @for(user of userList; track user.id){
+    <li>Username is {{user.name}} age is {{user.age}} and email address is {{user.email}}
+        <button (click)="deleteUser(user.id)">Delete</button>
+        <button (click)="selectUpdateUser(user.id)">Update User</button>
+    </li>
+  }
+</ul>
+
+<ul style="display: none;">
+  <li *ngFor="let product of productList">
+    <div><b>Product No:</b> {{product.id}}</div>
+    <div><b>Product Name:</b> {{product.title}}</div>
+    <div><b>Product Price:</b> {{product.price}}</div>
+    <div><b>Product Category:</b> {{product.category}}</div>
+    <div><b>Product Rating:</b> {{product.rating}}</div>
+    <div><b>width:</b> {{product.dimensions.width}}</div>
+    <div><b>Reviews:</b> 
+      <ul>
+        <li *ngFor="let review of product.reviews">
+            <div>Reveiwer comments: {{review.comment}}</div>
+            <div>Reveiwer Emails: {{review.reviewerEmail}}</div>
+        </li>
+      </ul>
+    </div>
+    <div><img src="{{product.thumbnail}}" title="" /></div>
+  </li>
+</ul>
