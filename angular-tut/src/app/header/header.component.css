@@ -1,0 +1,23 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px; 
+}
+nav ul.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+nav ul.nav-menu li a{
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+nav ul.nav-menu li a.active{
+    background-color: red;
+    color: #fff;
+}

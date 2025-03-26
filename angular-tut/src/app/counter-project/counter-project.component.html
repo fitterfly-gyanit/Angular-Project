@@ -36,7 +36,7 @@
 
 <!--  Input Events code start here  -->
 
-<h1>Get and Set Input field Value</h1>
+<!-- <h1>Get and Set Input field Value</h1>
 
 <h1>User Name is : {{displayName}}</h1>
 
@@ -61,3 +61,57 @@
 <br>
 <br>
 <hr>
+
+<h1>Signals in angular</h1> -->
+
+<!-- <h1>{{count()}}</h1>
+<h1>{{x}}</h1>
+
+<button (click)="updateSignal()">Update Signal</button> -->
+
+<!-- <button (click)="updateSignal('decr')">Decrement</button>
+<h1>{{count()}}</h1>
+<button (click)="updateSignal('incr')">Increment</button>
+
+
+<br>
+<br>
+<hr>
+
+<h1>Computed Signals</h1>
+
+<h1>{{userName()}}</h1>
+
+<button (click)="userName.set('sam')">Update</button>
+
+<br>
+<br>
+
+<button (click)="toggleValue()">Toggle Value</button>
+<h2>{{count()}}</h2>
+@if(displayHeading){
+    <h1 style="background-color: green;">page heading</h1>
+} -->
+
+
+<!-- Reactive Form Code -->
+
+<h1>form Grouping in reactive Form</h1>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+    <input type="text" placeholder="Enter Name" formControlName="name">
+    <span *ngIf="name?.hasError('required')">Name is Required.</span>
+    <span class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">Please enter name</span>
+    <br>
+    <br>
+    <input type="text" placeholder="Enter Password" formControlName="password">
+    <span *ngIf="name?.hasError('required')">Password is Required.</span>
+    <span class="error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please enter valid password</span>
+    <br><br>
+    <input type="email" placeholder="Enter email" formControlName="email">
+    <span *ngIf="email?.hasError('required')">Email is Required.</span>
+    <span class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please enter valid email</span>
+    <br><br>
+    <button>submit</button>
+    <br>
+</form>

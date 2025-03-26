@@ -1,30 +1,78 @@
-<h1>Signals in angular</h1>
 
-<!-- <h1>{{count()}}</h1>
-<h1>{{x}}</h1>
+<app-header></app-header>
 
-<button (click)="updateSignal()">Update Signal</button> -->
+<h1>Pass Data from child to parent component</h1>
 
-<button (click)="updateSignal('decr')">Decrement</button>
-<h1>{{count()}}</h1>
-<button (click)="updateSignal('incr')">Increment</button>
+<app-member (getMembers)="handleMembers($event)"></app-member>
+
+@for(member of members; track member){
+    <h2>{{member}}</h2>
+}
 
 
-<br>
-<br>
+
+<hr>
+<!-- 
+@for(player of players; track player;){
+    <app-user [player]="player"></app-user>
+} -->
+
+<button (click)="updateCounter()">count {{counter}}</button>
+
+<div *ngIf="counter!=5">
+    <app-user [user]="userName"></app-user>
+</div>
+
+
+
 <hr>
 
-<h1>Computed Signals</h1>
+<h1>Template Driven Form</h1>
 
-<h1>{{userName()}}</h1>
+<form #userForm="ngForm" (ngSubmit)="addDetails(userForm.value)">
+    <input type="text" #name="ngModel" required placeholder="Enter Name" name="name" ngModel>
+    <span class="error" *ngIf="name.invalid && name.touched">Name is Required.</span>
+    <!--<span class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">Please enter name</span> -->
+    <br>
+    <br>
+    <input type="password" #password="ngModel" minlength="5" maxlength="10" required placeholder="Enter Password" name="password" ngModel>
+    <span class="error" *ngIf="password.invalid && password.touched">Password is Required.</span>
+    <!-- <span class="error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please enter valid password</span> -->
+    <br><br>
+    <input type="email" #email="ngModel" email placeholder="Enter email" name="email" ngModel>
+    <span class="error" *ngIf="email.invalid && email.touched">Email is Required.</span>
+    <!-- <span class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please enter valid email</span> -->
+    <br><br>
+    <input type="text" #address="ngModel" pattern="[a-zA-Z0-9\s]+" required placeholder="Enter address" name="address" ngModel>
+    <span class="error" *ngIf="address.invalid && address.touched">Please enter Valid address</span>
+    <!-- <span class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please enter valid email</span> -->
+    <br><br>
+    <select #gender="ngModel" required name="gender" ngModel>
+        <option>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+    <span class="error" *ngIf="gender.invalid && gender.touched">Gender is Required.</span>
+    <br><br>
+    <!-- <input type="range" min="0" max="20" name="range" ngModel> -->
+    <br><br>
+    <button [disabled]="userForm.invalid">Add User</button>
+    <br>
+</form>
 
-<button (click)="userName.set('sam')">Update</button>
+<router-outlet />
 
-<br>
-<br>
+<h2>{{userDetail?.name}}</h2>
+<h2>{{userDetail?.password}}</h2>
+<h2>{{userDetail?.gender}}</h2>
+<h2>{{userDetail?.range}}</h2>
 
-<button (click)="toggleValue()">Toggle Value</button>
-<h2>{{count()}}</h2>
-@if(displayHeading){
-    <h1 style="background-color: green;">page heading</h1>
-}
+<!-- <app-user [user]="selectedUser.value" [city]="userCity"></app-user>
+
+<select #selectedUser (change)="onUserChange(selectedUser.value)">
+    <option value="Gyani">Gyani</option>
+    <option value="Sam">Sam</option>
+    <option value="Bruce">Bruce</option>
+    <option value="Test">Test</option>
+</select> -->
+

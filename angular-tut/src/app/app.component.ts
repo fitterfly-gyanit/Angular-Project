@@ -1,60 +1,48 @@
 import { Component, effect, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CounterAppComponent } from "./counter-project/counter-project.component";
+import { HeaderComponent } from './header/header.component';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { UserComponent } from './user/user.component';
+import { MemberComponent } from './member/member.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CounterAppComponent],
+  imports: [RouterOutlet, HeaderComponent, FormsModule, NgIf, UserComponent, MemberComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  count=signal(0);
-  x=20;
 
-  userName=signal('anil');
+  userName="Bruce"
 
+  userCity="Mumbai"
 
-  displayHeading=false;
+  players=['Gyani', 'Sam', 'Tony', 'Peter', 'Johny', 'Brane']
 
-  constructor(){
-    effect(()=>{
-      // console.log(this.x);
-      //console.log(this.count());
-      //console.log(this.userName());
+  counter=0;
 
-      if(this.count()==2){
-        this.displayHeading=true;
-        setTimeout(()=>{
-          this.displayHeading=false;
-        },2000)
-      }else{
-        this.displayHeading=false;
-      }
-    })
+  updateCounter(){
+    this.counter++;
   }
 
-  updateSignal(val:string){
-    //this.x= 30;
-    //this.count=signal(100);
-    //this.count.set(this.count()+1);
-    //this.x= this.x+1;
-
-    if(val=="incr"){
-      this.count.set(this.count()+1);
-    }else{
-      if(this.count()==0){
-        this.count.set(0);
-      }else{
-        this.count.set(this.count()-1);
-      }
-    }
+  onUserChange(user:string){
+    this.userName= user;
   }
 
+  userDetail:any;
 
-  toggleValue(){
-    this.count.set(this.count()+1);
-    //this.displayHeading=!this.displayHeading
+  addDetails(val:NgForm){
+    console.log(val);
+    this.userDetail=val;
+  }
+
+  members:undefined|string[];
+
+  handleMembers(members:string[]){
+    console.log(members);
+    this.members=members;
   }
 }
